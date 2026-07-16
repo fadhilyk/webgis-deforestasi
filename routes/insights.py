@@ -151,9 +151,9 @@ def get_summary():
         )
 
     try:
-        # Hitung luas masing-masing layer
-        target_2024_ha = float(GeoService.calculate_area_ha(target2024_gdf))
-        target_2025_ha = float(GeoService.calculate_area_ha(target2025_gdf))
+        # Gunakan luasan aktual dari hasil running Google Earth Engine (pixel-based)
+        target_2024_ha = 191466.25
+        target_2025_ha = 207633.11
 
         # Hitung statistik gain vs loss
         stats = StatsService.calculate_gain_loss_stats(gain_gdf, loss_gdf)
@@ -324,8 +324,8 @@ def get_full_insights():
         target2024_gdf = GeoService.load_geojson("target-2024")
         target2025_gdf = GeoService.load_geojson("target-2025")
 
-        target_2024_ha = float(GeoService.calculate_area_ha(target2024_gdf))
-        target_2025_ha = float(GeoService.calculate_area_ha(target2025_gdf))
+        target_2024_ha = 191466.25
+        target_2025_ha = 207633.11
         stats          = StatsService.calculate_gain_loss_stats(gain_gdf, loss_gdf)
 
     except Exception as exc:

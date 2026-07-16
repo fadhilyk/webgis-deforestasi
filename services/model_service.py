@@ -69,22 +69,22 @@ class ModelService:
     # ---------------------------------------------------------------------------
 
     # Nilai confusion matrix dari hasil evaluasi model (presentasi)
-    _CM_TP = 30   # True Positive  : Model prediksi hutan → aktual hutan ✓
-    _CM_TN = 38   # True Negative  : Model prediksi non-hutan → aktual non-hutan ✓
-    _CM_FP = 7    # False Positive : Model prediksi hutan → aktual non-hutan ✗
-    _CM_FN = 15   # False Negative : Model prediksi non-hutan → aktual hutan ✗
+    _CM_TP = 56   # True Positive
+    _CM_TN = 57   # True Negative
+    _CM_FP = 2    # False Positive
+    _CM_FN = 1    # False Negative
 
     # ---------------------------------------------------------------------------
     # METRICS CONSTANTS
     # ---------------------------------------------------------------------------
 
     # Metrik evaluasi model dari hasil presentasi proyek
-    _ACCURACY          = 75.6   # Persentase prediksi yang benar
-    _PRECISION         = 81.1   # Ketepatan prediksi positif
-    _RECALL            = 66.7   # Sensitivitas (kemampuan deteksi kelas positif)
-    _F1_SCORE          = 73.3   # Harmonic mean of Precision & Recall
-    _TRAINING_SAMPLES  = 210    # Jumlah sampel data training (70%)
-    _TESTING_SAMPLES   = 90     # Jumlah sampel data testing  (30%)
+    _ACCURACY          = 97.4   # Persentase prediksi yang benar
+    _PRECISION         = 96.6   # Ketepatan prediksi positif
+    _RECALL            = 98.2   # Sensitivitas (kemampuan deteksi kelas positif)
+    _F1_SCORE          = 97.4   # Harmonic mean of Precision & Recall
+    _TRAINING_SAMPLES  = 284    # Jumlah sampel data training (70%)
+    _TESTING_SAMPLES   = 116    # Jumlah sampel data testing  (30%)
 
     # ---------------------------------------------------------------------------
     # GET CONFUSION MATRIX
