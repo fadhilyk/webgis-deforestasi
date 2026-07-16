@@ -187,7 +187,8 @@ def index():
     """
     try:
         return render_template("index.html")
-    except Exception:
+    except Exception as exc:
+        logger.error("Template render GAGAL: %s", exc, exc_info=True)
         # Fallback jika templates belum dibuat
         return jsonify({
             "message": "Selamat datang di WebGIS Monitoring Deforestasi Kerinci",

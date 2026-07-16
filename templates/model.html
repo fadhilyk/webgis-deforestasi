@@ -1,0 +1,144 @@
+<!-- =================================================================== -->
+<!-- TAB 3: EVALUASI MODEL — Metrics, Confusion Matrix, Interpretation  -->
+<!-- Included by base.html as partial template                       -->
+<!-- =================================================================== -->
+
+<!-- Loading Spinner -->
+<div id="model-loading" class="text-center py-5">
+    <div class="spinner-border text-accent" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+    <p class="mt-2 text-muted small">Memuat data evaluasi model...</p>
+</div>
+
+<!-- Model Content (hidden until loaded) -->
+<div id="model-content" style="display: none;">
+
+    <!-- Model Info Banner -->
+    <div class="alert alert-glass mb-3 d-flex align-items-center" role="alert">
+        <i class="bi bi-cpu-fill fs-4 me-3 text-accent"></i>
+        <div>
+            <strong>Random Forest Classifier</strong> —
+            9 fitur (B2, B3, B4, B8, B11, B12 + NDVI, NDMI, NDBI) &bull;
+            <span id="model-samples">300</span> sampel &bull;
+            Split <span id="model-split">70:30</span>
+        </div>
+    </div>
+
+    <!-- Metrics Cards Row -->
+    <div class="row g-3 mb-4">
+        <!-- Accuracy -->
+        <div class="col-6 col-lg-3">
+            <div class="card card-glass metric-card h-100">
+                <div class="card-body text-center">
+                    <h6 class="text-muted small mb-1">Accuracy</h6>
+                    <h2 class="fw-bold mb-1" id="metric-accuracy">—</h2>
+                    <div class="progress progress-thin">
+                        <div class="progress-bar bg-success" id="bar-accuracy"
+                             role="progressbar" style="width: 0%"></div>
+                    </div>
+                    <p class="text-muted mt-1 mb-0 small" id="formula-accuracy"></p>
+                </div>
+            </div>
+        </div>
+        <!-- Precision -->
+        <div class="col-6 col-lg-3">
+            <div class="card card-glass metric-card h-100">
+                <div class="card-body text-center">
+                    <h6 class="text-muted small mb-1">Precision</h6>
+                    <h2 class="fw-bold mb-1" id="metric-precision">—</h2>
+                    <div class="progress progress-thin">
+                        <div class="progress-bar bg-info" id="bar-precision"
+                             role="progressbar" style="width: 0%"></div>
+                    </div>
+                    <p class="text-muted mt-1 mb-0 small" id="formula-precision"></p>
+                </div>
+            </div>
+        </div>
+        <!-- Recall -->
+        <div class="col-6 col-lg-3">
+            <div class="card card-glass metric-card h-100">
+                <div class="card-body text-center">
+                    <h6 class="text-muted small mb-1">Recall</h6>
+                    <h2 class="fw-bold mb-1" id="metric-recall">—</h2>
+                    <div class="progress progress-thin">
+                        <div class="progress-bar bg-warning" id="bar-recall"
+                             role="progressbar" style="width: 0%"></div>
+                    </div>
+                    <p class="text-muted mt-1 mb-0 small" id="formula-recall"></p>
+                </div>
+            </div>
+        </div>
+        <!-- F1 Score -->
+        <div class="col-6 col-lg-3">
+            <div class="card card-glass metric-card h-100">
+                <div class="card-body text-center">
+                    <h6 class="text-muted small mb-1">F1 Score</h6>
+                    <h2 class="fw-bold mb-1" id="metric-f1">—</h2>
+                    <div class="progress progress-thin">
+                        <div class="progress-bar bg-primary" id="bar-f1"
+                             role="progressbar" style="width: 0%"></div>
+                    </div>
+                    <p class="text-muted mt-1 mb-0 small" id="formula-f1"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confusion Matrix & Interpretation Row -->
+    <div class="row g-3 mb-3">
+        <!-- Confusion Matrix Heatmap -->
+        <div class="col-md-6">
+            <div class="card card-glass h-100">
+                <div class="card-body">
+                    <h6 class="card-title">
+                        <i class="bi bi-grid-3x3 me-2"></i>Confusion Matrix
+                    </h6>
+                    <div id="chart-confusion-matrix" style="height: 350px;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interpretation -->
+        <div class="col-md-6">
+            <div class="card card-glass h-100">
+                <div class="card-body">
+                    <h6 class="card-title">
+                        <i class="bi bi-chat-left-text me-2"></i>Interpretasi
+                    </h6>
+                    <div id="model-interpretation" class="small">
+                        <!-- Populated by charts.js -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Limitations & Recommendations -->
+    <div class="row g-3 mb-3">
+        <div class="col-md-6">
+            <div class="card card-glass h-100">
+                <div class="card-body">
+                    <h6 class="card-title text-warning">
+                        <i class="bi bi-exclamation-triangle me-2"></i>Keterbatasan Model
+                    </h6>
+                    <ul class="small mb-0" id="model-limitations">
+                        <!-- Populated by charts.js -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card card-glass h-100">
+                <div class="card-body">
+                    <h6 class="card-title text-success">
+                        <i class="bi bi-check2-circle me-2"></i>Rekomendasi
+                    </h6>
+                    <ul class="small mb-0" id="model-recommendations">
+                        <!-- Populated by charts.js -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

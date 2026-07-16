@@ -1,0 +1,130 @@
+<!-- =================================================================== -->
+<!-- TAB 2: DATA & PROSES — Statistics Cards + Metadata                  -->
+<!-- Included by base.html as partial template                       -->
+<!-- =================================================================== -->
+
+<!-- Loading Spinner -->
+<div id="data-loading" class="text-center py-5">
+    <div class="spinner-border text-accent" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+    <p class="mt-2 text-muted small">Menghitung statistik...</p>
+</div>
+
+<!-- Statistics Content (hidden until data loaded) -->
+<div id="data-content" style="display: none;">
+
+    <!-- Stat Cards Row -->
+    <div class="row g-3 mb-4">
+        <!-- Gain Card -->
+        <div class="col-md-6 col-lg-3">
+            <div class="card card-glass stat-card stat-gain h-100">
+                <div class="card-body text-center">
+                    <div class="stat-icon mb-2">
+                        <i class="bi bi-arrow-up-circle-fill text-success fs-1"></i>
+                    </div>
+                    <h6 class="card-subtitle text-muted small mb-1">Area Gain</h6>
+                    <h3 class="card-title fw-bold" id="stat-gain-ha">—</h3>
+                    <p class="text-muted small mb-0">
+                        <span id="stat-gain-pct">—</span>% dari total perubahan
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Loss Card -->
+        <div class="col-md-6 col-lg-3">
+            <div class="card card-glass stat-card stat-loss h-100">
+                <div class="card-body text-center">
+                    <div class="stat-icon mb-2">
+                        <i class="bi bi-arrow-down-circle-fill text-danger fs-1"></i>
+                    </div>
+                    <h6 class="card-subtitle text-muted small mb-1">Area Loss</h6>
+                    <h3 class="card-title fw-bold" id="stat-loss-ha">—</h3>
+                    <p class="text-muted small mb-0">
+                        <span id="stat-loss-pct">—</span>% dari total perubahan
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Net Change Card -->
+        <div class="col-md-6 col-lg-3">
+            <div class="card card-glass stat-card stat-net h-100">
+                <div class="card-body text-center">
+                    <div class="stat-icon mb-2">
+                        <i class="bi bi-plus-slash-minus fs-1 text-info"></i>
+                    </div>
+                    <h6 class="card-subtitle text-muted small mb-1">Net Change</h6>
+                    <h3 class="card-title fw-bold" id="stat-net-ha">—</h3>
+                    <p class="small mb-0">
+                        <span class="badge" id="stat-status-badge">—</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Total Change Card -->
+        <div class="col-md-6 col-lg-3">
+            <div class="card card-glass stat-card stat-total h-100">
+                <div class="card-body text-center">
+                    <div class="stat-icon mb-2">
+                        <i class="bi bi-bar-chart-fill fs-1 text-warning"></i>
+                    </div>
+                    <h6 class="card-subtitle text-muted small mb-1">Total Perubahan</h6>
+                    <h3 class="card-title fw-bold" id="stat-total-ha">—</h3>
+                    <p class="text-muted small mb-0">
+                        <span id="stat-features">—</span> polygon terdeteksi
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Charts Row -->
+    <div class="row g-3 mb-4">
+        <!-- Pie Chart: Gain vs Loss -->
+        <div class="col-md-6">
+            <div class="card card-glass h-100">
+                <div class="card-body">
+                    <h6 class="card-title">
+                        <i class="bi bi-pie-chart me-2"></i>Distribusi Gain vs Loss
+                    </h6>
+                    <div id="chart-gain-loss" style="height: 320px;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bar Chart: Feature Count -->
+        <div class="col-md-6">
+            <div class="card card-glass h-100">
+                <div class="card-body">
+                    <h6 class="card-title">
+                        <i class="bi bi-bar-chart me-2"></i>Jumlah Polygon per Layer
+                    </h6>
+                    <div id="chart-features" style="height: 320px;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Metadata Section -->
+    <div class="row g-3 mb-3">
+        <div class="col-12">
+            <div class="card card-glass">
+                <div class="card-body">
+                    <h6 class="card-title">
+                        <i class="bi bi-info-circle me-2"></i>Metadata Sumber Data
+                    </h6>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-borderless mb-0" id="metadata-table">
+                            <tbody>
+                                <!-- Populated by charts.js -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

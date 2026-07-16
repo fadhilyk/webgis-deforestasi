@@ -1,0 +1,143 @@
+<!-- =================================================================== -->
+<!-- TAB 4: INSIGHT HASIL — Summary, Spatial, Conclusions               -->
+<!-- Included by base.html as partial template                       -->
+<!-- =================================================================== -->
+
+<!-- Loading Spinner -->
+<div id="insights-loading" class="text-center py-5">
+    <div class="spinner-border text-accent" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+    <p class="mt-2 text-muted small">Memuat insight...</p>
+</div>
+
+<!-- Insights Content (hidden until loaded) -->
+<div id="insights-content" style="display: none;">
+
+    <!-- Summary Stats Row -->
+    <div class="row g-3 mb-4">
+        <!-- Target 2024 -->
+        <div class="col-md-6 col-lg-3">
+            <div class="card card-glass h-100">
+                <div class="card-body text-center">
+                    <i class="bi bi-calendar-check fs-3 text-warning mb-2"></i>
+                    <h6 class="text-muted small mb-1">Target 2024</h6>
+                    <h4 class="fw-bold" id="insight-t2024">—</h4>
+                </div>
+            </div>
+        </div>
+        <!-- Target 2025 -->
+        <div class="col-md-6 col-lg-3">
+            <div class="card card-glass h-100">
+                <div class="card-body text-center">
+                    <i class="bi bi-calendar2-check fs-3 text-purple mb-2"></i>
+                    <h6 class="text-muted small mb-1">Target 2025</h6>
+                    <h4 class="fw-bold" id="insight-t2025">—</h4>
+                </div>
+            </div>
+        </div>
+        <!-- Gain -->
+        <div class="col-md-6 col-lg-3">
+            <div class="card card-glass h-100">
+                <div class="card-body text-center">
+                    <i class="bi bi-graph-up-arrow fs-3 text-success mb-2"></i>
+                    <h6 class="text-muted small mb-1">Total Gain</h6>
+                    <h4 class="fw-bold text-success" id="insight-gain">—</h4>
+                </div>
+            </div>
+        </div>
+        <!-- Loss -->
+        <div class="col-md-6 col-lg-3">
+            <div class="card card-glass h-100">
+                <div class="card-body text-center">
+                    <i class="bi bi-graph-down-arrow fs-3 text-danger mb-2"></i>
+                    <h6 class="text-muted small mb-1">Total Loss</h6>
+                    <h4 class="fw-bold text-danger" id="insight-loss">—</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Spatial Distribution Row -->
+    <div class="row g-3 mb-4">
+        <!-- Gain Distribution -->
+        <div class="col-md-6">
+            <div class="card card-glass h-100 border-start border-success border-3">
+                <div class="card-body">
+                    <h6 class="card-title">
+                        <i class="bi bi-geo-alt-fill text-success me-2"></i>
+                        Distribusi Gain
+                    </h6>
+                    <p class="small mb-2" id="spatial-gain-location">—</p>
+                    <p class="small text-muted mb-2" id="spatial-gain-desc">—</p>
+                    <h6 class="small fw-bold">Kemungkinan Penyebab:</h6>
+                    <ul class="small mb-0" id="spatial-gain-causes">
+                        <!-- Populated by charts.js -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Loss Distribution -->
+        <div class="col-md-6">
+            <div class="card card-glass h-100 border-start border-danger border-3">
+                <div class="card-body">
+                    <h6 class="card-title">
+                        <i class="bi bi-geo-alt-fill text-danger me-2"></i>
+                        Distribusi Loss
+                    </h6>
+                    <p class="small mb-2" id="spatial-loss-location">—</p>
+                    <p class="small text-muted mb-2" id="spatial-loss-desc">—</p>
+                    <h6 class="small fw-bold">Kemungkinan Penyebab:</h6>
+                    <ul class="small mb-0" id="spatial-loss-causes">
+                        <!-- Populated by charts.js -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Key Findings & Conclusion -->
+    <div class="row g-3 mb-3">
+        <!-- Key Findings -->
+        <div class="col-md-6">
+            <div class="card card-glass h-100">
+                <div class="card-body">
+                    <h6 class="card-title">
+                        <i class="bi bi-list-check me-2"></i>Temuan Utama
+                    </h6>
+                    <ul class="small mb-0" id="key-findings">
+                        <!-- Populated by charts.js -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Conclusion -->
+        <div class="col-md-6">
+            <div class="card card-glass h-100">
+                <div class="card-body">
+                    <h6 class="card-title">
+                        <i class="bi bi-bookmark-star me-2"></i>Kesimpulan
+                    </h6>
+                    <p class="small mb-0" id="conclusion-text">—</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Comparison Chart -->
+    <div class="row g-3 mb-3">
+        <div class="col-12">
+            <div class="card card-glass">
+                <div class="card-body">
+                    <h6 class="card-title">
+                        <i class="bi bi-bar-chart-line me-2"></i>
+                        Perbandingan Target vs Gain/Loss
+                    </h6>
+                    <div id="chart-comparison" style="height: 350px;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

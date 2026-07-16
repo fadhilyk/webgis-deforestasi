@@ -1,0 +1,402 @@
+/* ================================================================= */
+/* style.css - WebGIS Monitoring Deforestasi Kerinci                 */
+/* Custom theme: Dark green forest theme                             */
+/* ================================================================= */
+
+/* ----------------------------------------------------------------- */
+/* CSS VARIABLES (DESIGN TOKENS)                                     */
+/* ----------------------------------------------------------------- */
+:root {
+    /* Primary palette — Forest / Earth tones */
+    --color-primary:       #1a472a;
+    --color-primary-light: #2d6a4f;
+    --color-primary-dark:  #0d2818;
+    --color-accent:        #52b788;
+    --color-accent-light:  #74c69d;
+
+    /* Semantic colors */
+    --color-gain:    #2ecc71;
+    --color-loss:    #e74c3c;
+    --color-neutral: #3498db;
+    --color-warning: #f39c12;
+    --color-purple:  #9b59b6;
+
+    /* Background & surface */
+    --bg-body:       #0f1a14;
+    --bg-surface:    #162920;
+    --bg-card:       rgba(22, 41, 32, 0.85);
+    --bg-navbar:     rgba(13, 40, 24, 0.95);
+
+    /* Text */
+    --text-primary:   #e8f5e9;
+    --text-secondary: #a5d6a7;
+    --text-muted:     #6b8f71;
+
+    /* Borders & Effects */
+    --border-color:   rgba(82, 183, 136, 0.15);
+    --glass-blur:     12px;
+    --shadow-soft:    0 4px 20px rgba(0, 0, 0, 0.25);
+    --shadow-glow:    0 0 15px rgba(82, 183, 136, 0.1);
+
+    /* Spacing */
+    --radius-sm: 0.375rem;
+    --radius-md: 0.625rem;
+    --radius-lg: 1rem;
+
+    /* Transitions */
+    --transition-fast: 0.2s ease;
+    --transition-base: 0.3s ease;
+}
+
+
+/* ----------------------------------------------------------------- */
+/* BASE STYLES                                                        */
+/* ----------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background-color: var(--bg-body);
+    color: var(--text-primary);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+/* Bootstrap Text Overrides */
+.text-muted { color: var(--text-muted) !important; }
+.card { color: var(--text-primary); }
+.table { color: var(--text-primary); }
+.small, small { color: var(--text-secondary); }
+.list-unstyled { color: var(--text-secondary); }
+
+
+/* ----------------------------------------------------------------- */
+/* NAVBAR                                                             */
+/* ----------------------------------------------------------------- */
+.bg-navbar {
+    background: var(--bg-navbar) !important;
+    backdrop-filter: blur(var(--glass-blur));
+    border-bottom: 1px solid var(--border-color);
+}
+
+.navbar-brand {
+    font-size: 1rem;
+    letter-spacing: -0.01em;
+}
+
+.text-accent {
+    color: var(--color-accent) !important;
+}
+
+.text-purple {
+    color: var(--color-purple) !important;
+}
+
+.navbar-dark .nav-link {
+    color: var(--text-secondary);
+    transition: color var(--transition-fast);
+}
+
+.navbar-dark .nav-link:hover {
+    color: var(--color-accent-light);
+}
+
+
+/* ----------------------------------------------------------------- */
+/* HERO HEADER                                                        */
+/* ----------------------------------------------------------------- */
+.hero-header {
+    background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 50%, var(--color-primary-light) 100%);
+    border-bottom: 2px solid var(--color-accent);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-header::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 70% 50%, rgba(82, 183, 136, 0.08) 0%, transparent 60%);
+    pointer-events: none;
+}
+
+.hero-header h1 {
+    font-size: 1.4rem;
+    letter-spacing: -0.02em;
+}
+
+.hero-header .lead {
+    font-size: 0.9rem;
+}
+
+
+/* ----------------------------------------------------------------- */
+/* TAB NAVIGATION                                                     */
+/* ----------------------------------------------------------------- */
+.nav-tabs-custom {
+    border: none;
+    gap: 0.375rem;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.nav-tabs-custom::-webkit-scrollbar {
+    display: none;
+}
+
+.nav-tabs-custom .nav-link {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    color: var(--text-secondary);
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    white-space: nowrap;
+    transition: all var(--transition-base);
+}
+
+.nav-tabs-custom .nav-link:hover {
+    background: rgba(82, 183, 136, 0.1);
+    color: var(--color-accent-light);
+    border-color: var(--color-accent);
+    transform: translateY(-1px);
+}
+
+.nav-tabs-custom .nav-link.active {
+    background: linear-gradient(135deg, var(--color-primary-light), var(--color-accent));
+    border-color: var(--color-accent);
+    color: #fff;
+    box-shadow: var(--shadow-glow);
+}
+
+
+/* ----------------------------------------------------------------- */
+/* GLASSMORPHISM CARDS                                                */
+/* ----------------------------------------------------------------- */
+.card-glass {
+    background: var(--bg-card);
+    backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-soft);
+    transition: all var(--transition-base);
+}
+
+.card-glass:hover {
+    border-color: rgba(82, 183, 136, 0.3);
+    box-shadow: var(--shadow-glow);
+}
+
+.card-glass .card-title {
+    color: var(--text-primary);
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+
+/* ----------------------------------------------------------------- */
+/* ALERT GLASS                                                        */
+/* ----------------------------------------------------------------- */
+.alert-glass {
+    background: rgba(82, 183, 136, 0.08);
+    border: 1px solid rgba(82, 183, 136, 0.25);
+    border-radius: var(--radius-md);
+    color: var(--text-primary);
+}
+
+
+/* ----------------------------------------------------------------- */
+/* STAT CARDS                                                         */
+/* ----------------------------------------------------------------- */
+.stat-card {
+    text-align: center;
+    transition: transform var(--transition-base);
+}
+
+.stat-card:hover {
+    transform: translateY(-3px);
+}
+
+.stat-card h3 {
+    font-size: 1.5rem;
+    color: var(--text-primary);
+}
+
+.stat-gain .stat-icon { color: var(--color-gain); }
+.stat-loss .stat-icon { color: var(--color-loss); }
+.stat-net  .stat-icon { color: var(--color-neutral); }
+.stat-total .stat-icon { color: var(--color-warning); }
+
+
+/* ----------------------------------------------------------------- */
+/* METRIC CARDS (TAB 3)                                               */
+/* ----------------------------------------------------------------- */
+.metric-card h2 {
+    font-size: 2rem;
+    color: var(--color-accent);
+}
+
+.progress-thin {
+    height: 4px;
+    border-radius: 2px;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.progress-thin .progress-bar {
+    border-radius: 2px;
+    transition: width 1s ease;
+}
+
+
+/* ----------------------------------------------------------------- */
+/* LEGEND COLOR INDICATORS                                            */
+/* ----------------------------------------------------------------- */
+.legend-color {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+    margin-right: 4px;
+    vertical-align: middle;
+}
+
+
+/* ----------------------------------------------------------------- */
+/* LEAFLET MAP OVERRIDES                                              */
+/* ----------------------------------------------------------------- */
+#map {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    z-index: 1;
+}
+
+.leaflet-control-zoom a {
+    background: var(--bg-card) !important;
+    color: var(--text-primary) !important;
+    border-color: var(--border-color) !important;
+}
+
+
+/* ----------------------------------------------------------------- */
+/* TABLES                                                             */
+/* ----------------------------------------------------------------- */
+.table {
+    color: var(--text-primary);
+}
+
+.table td,
+.table th {
+    border-color: var(--border-color);
+    padding: 0.5rem 0.75rem;
+    font-size: 0.85rem;
+}
+
+
+/* ----------------------------------------------------------------- */
+/* FORM SWITCH (LAYER CONTROLS)                                       */
+/* ----------------------------------------------------------------- */
+.form-check-input:checked {
+    background-color: var(--color-accent);
+    border-color: var(--color-accent);
+}
+
+.form-check-label {
+    color: var(--text-secondary);
+    cursor: pointer;
+}
+
+
+/* ----------------------------------------------------------------- */
+/* BADGES                                                             */
+/* ----------------------------------------------------------------- */
+.badge.bg-gain { background-color: var(--color-gain) !important; }
+.badge.bg-loss { background-color: var(--color-loss) !important; }
+
+
+/* ----------------------------------------------------------------- */
+/* LISTS IN CARDS                                                     */
+/* ----------------------------------------------------------------- */
+.card-glass ul {
+    padding-left: 1.2rem;
+}
+
+.card-glass ul li {
+    margin-bottom: 0.35rem;
+    color: var(--text-secondary);
+}
+
+
+/* ----------------------------------------------------------------- */
+/* SPINNER                                                            */
+/* ----------------------------------------------------------------- */
+.spinner-border.text-accent {
+    color: var(--color-accent) !important;
+}
+
+
+/* ----------------------------------------------------------------- */
+/* FOOTER                                                             */
+/* ----------------------------------------------------------------- */
+.app-footer {
+    background: var(--bg-navbar);
+    border-top: 1px solid var(--border-color);
+    color: var(--text-secondary);
+}
+
+
+/* ----------------------------------------------------------------- */
+/* SCROLLBAR (WebKit)                                                 */
+/* ----------------------------------------------------------------- */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-body);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-primary-light);
+    border-radius: 3px;
+}
+
+
+/* ----------------------------------------------------------------- */
+/* RESPONSIVE                                                         */
+/* ----------------------------------------------------------------- */
+@media (max-width: 768px) {
+    .hero-header h1 { font-size: 1.1rem; }
+    .hero-header .lead { font-size: 0.8rem; }
+
+    .nav-tabs-custom .nav-link {
+        padding: 0.4rem 0.75rem;
+        font-size: 0.8rem;
+    }
+
+    .tab-label {
+        display: none;
+    }
+
+    .stat-card h3 { font-size: 1.2rem; }
+    .metric-card h2 { font-size: 1.5rem; }
+
+    #map { height: 350px !important; }
+}
+
+@media (max-width: 576px) {
+    .container-fluid { padding-left: 0.75rem; padding-right: 0.75rem; }
+}
