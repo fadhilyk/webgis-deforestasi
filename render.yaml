@@ -1,0 +1,17 @@
+services:
+  # Nama service untuk WebGIS
+  - type: web
+    name: webgis-deforestasi
+    env: python
+    region: singapore
+    plan: free
+    branch: main
+    # Perintah untuk menginstall dependencies
+    buildCommand: "pip install -r requirements.txt"
+    # Perintah untuk menjalankan server (menggunakan Gunicorn)
+    startCommand: "gunicorn app:app"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
+      - key: FLASK_ENV
+        value: production
