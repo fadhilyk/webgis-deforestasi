@@ -13,12 +13,9 @@ Created  : July 2026
 """
 
 import os
-import json
 import logging
 from datetime import datetime, timezone
 
-import pandas as pd
-import geopandas as gpd
 from flask import Flask, jsonify, render_template
 from flask_cors import CORS
 

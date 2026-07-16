@@ -20,7 +20,6 @@ Created  : July 2026
 """
 
 import logging
-from typing import Optional
 
 from geopandas import GeoDataFrame
 

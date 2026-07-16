@@ -18,7 +18,6 @@ Created  : July 2026
 
 import json
 import logging
-from pathlib import Path
 
 import geopandas as gpd
 from geopandas import GeoDataFrame
