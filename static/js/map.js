@@ -19,6 +19,10 @@ document.addEventListener('DOMContentLoaded', () => {
         maxZoom: 18
     }).addTo(map);
 
+    // Tambahkan Penanda (Marker) Lokasi Kerinci
+    const kerinciMarker = L.marker([-1.9333, 101.4833]).addTo(map)
+        .bindPopup('<b>Kabupaten Kerinci</b><br>Area Monitoring Deforestasi');
+
     // Objek untuk menyimpan referensi layer
     const layerInstances = {};
 
