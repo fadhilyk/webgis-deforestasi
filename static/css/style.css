@@ -1,0 +1,65 @@
+/* ── Layout ───────────────────────────────────────────── */
+html, body {
+    height: 100%;
+    background: #f8f9fa;
+}
+
+/* ── Map ──────────────────────────────────────────────── */
+#map {
+    width: 100%;
+    min-height: 600px;
+    border: 1px solid #dee2e6;
+}
+
+/* ── Legend Swatches ──────────────────────────────────── */
+.legend-swatch {
+    display: inline-block;
+    width: 18px;
+    height: 12px;
+    border-radius: 2px;
+    flex-shrink: 0;
+}
+
+.legend-dash {
+    display: inline-block;
+    width: 18px;
+    height: 0;
+    border-top: 3px dashed;
+    flex-shrink: 0;
+}
+
+/* ── Info Panel ───────────────────────────────────────── */
+#info-panel {
+    min-height: 80px;
+    font-size: 0.875rem;
+}
+
+/* ── Tab Content ──────────────────────────────────────── */
+.tab-content {
+    min-height: 400px;
+}
+
+/* ── Cards ────────────────────────────────────────────── */
+.card-header {
+    font-size: 0.95rem;
+}
+
+/* ── Workflow Diagram ────────────────────────────────── */
+.workflow-step {
+    min-width: 100px;
+}
+
+.workflow-arrow {
+    line-height: 1;
+}
+
+/* ── Responsive ────────────────────────────────────────── */
+@media (max-width: 576px) {
+    .workflow .d-flex {
+        flex-direction: column !important;
+    }
+
+    .workflow-arrow {
+        transform: rotate(90deg);
+    }
+}

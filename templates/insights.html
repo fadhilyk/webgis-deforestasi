@@ -1,0 +1,308 @@
+{% extends "base.html" %}
+
+{% block tab4 %}
+<!-- Row: Summary Cards -->
+<div class="row" id="summary-cards">
+    <div class="col-md-3 mb-3">
+        <div class="card text-center h-100 border-success">
+            <div class="card-body">
+                <div class="text-center py-4">
+                    <div class="spinner-border text-success" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-success text-white small">Target 2024</div>
+        </div>
+    </div>
+    <div class="col-md-3 mb-3">
+        <div class="card text-center h-100 border-warning">
+            <div class="card-body">
+                <div class="text-center py-4">
+                    <div class="spinner-border text-warning" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-warning text-dark small">Target 2025</div>
+        </div>
+    </div>
+    <div class="col-md-3 mb-3">
+        <div class="card text-center h-100 border-info">
+            <div class="card-body">
+                <div class="text-center py-4">
+                    <div class="spinner-border text-info" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-info text-dark small">Gain</div>
+        </div>
+    </div>
+    <div class="col-md-3 mb-3">
+        <div class="card text-center h-100 border-danger">
+            <div class="card-body">
+                <div class="text-center py-4">
+                    <div class="spinner-border text-danger" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-danger text-white small">Loss</div>
+        </div>
+    </div>
+</div>
+
+<!-- Row: Spatial Distribution + Net Change -->
+<div class="row">
+    <!-- Net Change Card -->
+    <div class="col-md-4 mb-3">
+        <div class="card h-100">
+            <div class="card-header fw-bold">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' viewBox='0 0 16 16'%3E%3Cpath d='M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z'/%3E%3Cpath d='M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z'/%3E%3C/svg%3E"
+                     alt="" width="16" height="16" class="me-1">
+                Net Change
+            </div>
+            <div class="card-body text-center" id="netchange-container">
+                <div class="text-center py-4">
+                    <div class="spinner-border text-success" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <p class="text-muted mt-2">Menghitung...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gain Distribution -->
+    <div class="col-md-4 mb-3">
+        <div class="card h-100">
+            <div class="card-header fw-bold text-success">
+                Distribusi Gain
+            </div>
+            <div class="card-body" id="gain-dist-container">
+                <div class="text-center py-4">
+                    <div class="spinner-border text-success" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <p class="text-muted mt-2">Memuat data...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loss Distribution -->
+    <div class="col-md-4 mb-3">
+        <div class="card h-100">
+            <div class="card-header fw-bold text-danger">
+                Distribusi Loss
+            </div>
+            <div class="card-body" id="loss-dist-container">
+                <div class="text-center py-4">
+                    <div class="spinner-border text-danger" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <p class="text-muted mt-2">Memuat data...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Row: Key Insights -->
+<div class="card mb-3">
+    <div class="card-header fw-bold">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' viewBox='0 0 16 16'%3E%3Cpath d='M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z'/%3E%3Cpath d='M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z'/%3E%3C/svg%3E"
+             alt="" width="16" height="16" class="me-1">
+        Key Insights
+    </div>
+    <div class="card-body" id="insights-container">
+        <div class="text-center py-4">
+            <div class="spinner-border text-success" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <p class="text-muted mt-2">Menganalisis data...</p>
+        </div>
+    </div>
+</div>
+
+<!-- Row: Recommendations -->
+<div class="card mb-3">
+    <div class="card-header fw-bold">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' viewBox='0 0 16 16'%3E%3Cpath d='M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z'/%3E%3Cpath d='M5 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z'/%3E%3C/svg%3E"
+             alt="" width="16" height="16" class="me-1">
+        Rekomendasi
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-4 mb-2">
+                <div class="p-3 bg-light rounded h-100">
+                    <h6 class="fw-bold">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' fill='currentColor' viewBox='0 0 16 16'%3E%3Cpath d='M2.5 0a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5H3v.5A2.5 2.5 0 0 0 5.5 7h.5v.5A2.5 2.5 0 0 0 8.5 10h.5v.5A2.5 2.5 0 0 0 11.5 13h.5v.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5H15v-.5A2.5 2.5 0 0 0 12.5 7H12v-.5A2.5 2.5 0 0 0 9.5 4H9v-.5A2.5 2.5 0 0 0 6.5 1H6v-.5a.5.5 0 0 0-.5-.5h-3z'/%3E%3C/svg%3E"
+                             alt="" width="14" height="14" class="me-1">
+                        Analisis Multi-Tahun
+                    </h6>
+                    <p class="small text-muted mb-0">
+                        Lakukan analisis time-series menggunakan data
+                        tahunan untuk mengidentifikasi tren deforestasi
+                        jangka panjang dan hotspot yang konsisten.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-2">
+                <div class="p-3 bg-light rounded h-100">
+                    <h6 class="fw-bold">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' fill='currentColor' viewBox='0 0 16 16'%3E%3Cpath d='M8 0a1 1 0 0 1 1 1v5.268l4.562-2.634a1 1 0 1 1 1 1.732L10 8l4.562 2.634a1 1 0 1 1-1 1.732L9 9.732V15a1 1 0 1 1-2 0V9.732l-4.562 2.634a1 1 0 1 1-1-1.732L6 8 1.438 5.366a1 1 0 0 1 1-1.732L7 6.268V1a1 1 0 0 1 1-1z'/%3E%3C/svg%3E"
+                             alt="" width="14" height="14" class="me-1">
+                        Integrasi Sosial-Ekonomi
+                    </h6>
+                    <p class="small text-muted mb-0">
+                        Gabungkan data deforestasi dengan data
+                        sosial-ekonomi (populasi, mata pencaharian)
+                        untuk analisis penyebab yang lebih mendalam.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-2">
+                <div class="p-3 bg-light rounded h-100">
+                    <h6 class="fw-bold">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' fill='currentColor' viewBox='0 0 16 16'%3E%3Cpath d='M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5v-3zM2.5 2a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zm6.5.5A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zM1 10.5A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zm6.5.5A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3z'/%3E%3C/svg%3E"
+                             alt="" width="14" height="14" class="me-1">
+                        Framework Monitoring
+                    </h6>
+                    <p class="small text-muted mb-0">
+                        Kembangkan sistem monitoring berkelanjutan
+                        dengan update data satelit tahunan dan
+                        validasi lapangan periodik.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// ── Fetch Summary ────────────────────────────────────
+fetch('/api/insights/summary')
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+        // Target 2024
+        var sumTarget = data.target_2024_ha + data.target_2025_ha;
+        document.getElementById('summary-cards').querySelectorAll('.card')[0].innerHTML =
+            '<div class="card-body"><div class="fs-3 fw-bold text-success">' +
+            data.target_2024_ha.toLocaleString() + '</div><small class="text-muted">ha</small></div>' +
+            '<div class="card-footer bg-success text-white small">Target 2024</div>';
+
+        // Target 2025
+        document.getElementById('summary-cards').querySelectorAll('.card')[1].innerHTML =
+            '<div class="card-body"><div class="fs-3 fw-bold text-warning">' +
+            data.target_2025_ha.toLocaleString() + '</div><small class="text-muted">ha</small></div>' +
+            '<div class="card-footer bg-warning text-dark small">Target 2025</div>';
+
+        // Gain
+        var gainPct = sumTarget > 0 ? ((data.gain_ha / sumTarget) * 100).toFixed(2) : '0.00';
+        document.getElementById('summary-cards').querySelectorAll('.card')[2].innerHTML =
+            '<div class="card-body"><div class="fs-3 fw-bold text-info">+' +
+            data.gain_ha.toLocaleString() + '</div><small class="text-muted">ha  (+' + gainPct + '%)</small></div>' +
+            '<div class="card-footer bg-info text-dark small">Gain</div>';
+
+        // Loss
+        var lossPct = sumTarget > 0 ? ((data.loss_ha / sumTarget) * 100).toFixed(2) : '0.00';
+        document.getElementById('summary-cards').querySelectorAll('.card')[3].innerHTML =
+            '<div class="card-body"><div class="fs-3 fw-bold text-danger">-' +
+            data.loss_ha.toLocaleString() + '</div><small class="text-muted">ha  (-' + lossPct + '%)</small></div>' +
+            '<div class="card-footer bg-danger text-white small">Loss</div>';
+
+        // Net change
+        var netSign = data.net_change_ha >= 0 ? '+' : '';
+        var netClass = data.net_change_ha >= 0 ? 'text-success' : 'text-danger';
+        document.getElementById('netchange-container').innerHTML =
+            '<div class="fs-1 fw-bold ' + netClass + '">' + netSign + data.net_change_ha.toLocaleString() +
+            '</div><small class="text-muted">ha</small>' +
+            '<div class="mt-2"><span class="badge bg-' + (data.net_change_ha >= 0 ? 'success' : 'danger') +
+            ' fs-6">' + netSign + data.net_change_percent + '%</span></div>' +
+            '<p class="small text-muted mt-2 mb-0">Perubahan bersih dari Gain - Loss</p>';
+    })
+    .catch(function(err) {
+        document.getElementById('summary-cards').innerHTML =
+            '<div class="alert alert-danger">Gagal memuat ringkasan: ' + err.message + '</div>';
+        document.getElementById('netchange-container').innerHTML =
+            '<div class="alert alert-danger mb-0">Gagal memuat data net change.</div>';
+    });
+
+// ── Fetch Spatial Distribution ──────────────────────
+fetch('/api/insights/spatial')
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+        // Gain distribution
+        var gainHtml = '<ul class="list-group list-group-flush">';
+        for (var i = 0; i < data.gain_distribution.length; i++) {
+            var r = data.gain_distribution[i];
+            gainHtml += '<li class="list-group-item d-flex justify-content-between align-items-center">';
+            gainHtml += '<div><strong>' + r.location + '</strong>';
+            if (r.possible_causes && r.possible_causes.length) {
+                gainHtml += '<br><small class="text-muted">' + r.possible_causes.join(', ') + '</small>';
+            }
+            gainHtml += '</div>';
+            gainHtml += '<span class="badge bg-success rounded-pill">' + r.percentage + '%</span>';
+            gainHtml += '</li>';
+        }
+        gainHtml += '</ul>';
+        document.getElementById('gain-dist-container').innerHTML = gainHtml;
+
+        // Loss distribution
+        var lossHtml = '<ul class="list-group list-group-flush">';
+        for (var i = 0; i < data.loss_distribution.length; i++) {
+            var r = data.loss_distribution[i];
+            lossHtml += '<li class="list-group-item d-flex justify-content-between align-items-center">';
+            lossHtml += '<div><strong>' + r.location + '</strong>';
+            if (r.possible_causes && r.possible_causes.length) {
+                lossHtml += '<br><small class="text-muted">' + r.possible_causes.join(', ') + '</small>';
+            }
+            lossHtml += '</div>';
+            lossHtml += '<span class="badge bg-danger rounded-pill">' + r.percentage + '%</span>';
+            lossHtml += '</li>';
+        }
+        lossHtml += '</ul>';
+        document.getElementById('loss-dist-container').innerHTML = lossHtml;
+    })
+    .catch(function(err) {
+        document.getElementById('gain-dist-container').innerHTML =
+            '<div class="alert alert-danger mb-0">Gagal memuat distribusi spasial: ' + err.message + '</div>';
+        document.getElementById('loss-dist-container').innerHTML =
+            '<div class="alert alert-danger mb-0">Gagal memuat distribusi spasial.</div>';
+    });
+
+// ── Fetch Summary for Insights (re-use same fetch) ──
+fetch('/api/insights/summary')
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+        var largestChange = data.gain_ha > data.loss_ha ? 'Gain' : 'Loss';
+        var largestVal = data.gain_ha > data.loss_ha ? data.gain_ha : data.loss_ha;
+        var trend = data.net_change_ha >= 0 ? 'peningkatan' : 'penurunan';
+        var trendDir = data.net_change_ha >= 0 ? 'positif' : 'negatif';
+
+        var html = '<div class="row">';
+        html += '<div class="col-md-6 mb-2"><div class="p-3 bg-light rounded h-100">';
+        html += '<h6 class="fw-bold">Perubahan Terbesar</h6>';
+        html += '<p class="small mb-0">' + largestChange + ' sebesar <strong>' +
+                largestVal.toLocaleString() + ' ha</strong> merupakan perubahan '
+                'terbesar dalam periode analisis.</p>';
+        html += '</div></div>';
+        html += '<div class="col-md-6 mb-2"><div class="p-3 bg-light rounded h-100">';
+        html += '<h6 class="fw-bold">Tren &amp; Pola</h6>';
+        html += '<p class="small mb-0">Tren ' + trendDir +
+                ' dengan ' + trend + ' bersih sebesar <strong>' +
+                Math.abs(data.net_change_ha).toLocaleString() + ' ha</strong> ' +
+                '(+' + data.net_change_percent + '%). ' +
+                'Distribusi spasial menunjukkan konsentrasi di wilayah Timur dan Selatan.</p>';
+        html += '</div></div>';
+        html += '</div>';
+        document.getElementById('insights-container').innerHTML = html;
+    })
+    .catch(function(err) {
+        document.getElementById('insights-container').innerHTML =
+            '<div class="alert alert-danger mb-0">Gagal memuat insights: ' + err.message + '</div>';
+    });
+</script>
+{% endblock %}

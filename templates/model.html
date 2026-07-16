@@ -1,0 +1,222 @@
+{% extends "base.html" %}
+
+{% block tab3 %}
+<!-- Row: Confusion Matrix + Metrics -->
+<div class="row">
+    <!-- Confusion Matrix -->
+    <div class="col-md-6 mb-3">
+        <div class="card h-100">
+            <div class="card-header fw-bold">Confusion Matrix</div>
+            <div class="card-body">
+                <div id="confusion-matrix-chart" style="height:340px;">
+                    <div class="text-center py-5">
+                        <div class="spinner-border text-success" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <p class="text-muted mt-2">Memuat confusion matrix...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Metrics -->
+    <div class="col-md-6 mb-3">
+        <div class="card h-100">
+            <div class="card-header fw-bold">Model Metrics</div>
+            <div class="card-body" id="metrics-container">
+                <div class="text-center py-4">
+                    <div class="spinner-border text-success" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <p class="text-muted mt-2">Memuat metrik...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Row: Interpretation + Details -->
+<div class="row">
+    <!-- Interpretation Card -->
+    <div class="col-md-6 mb-3">
+        <div class="card h-100">
+            <div class="card-header fw-bold">Interpretasi Confusion Matrix</div>
+            <div class="card-body" id="interpretation-container">
+                <div class="text-center py-4">
+                    <div class="spinner-border text-success" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <p class="text-muted mt-2">Memuat interpretasi...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Limitations Card -->
+    <div class="col-md-6 mb-3">
+        <div class="card h-100">
+            <div class="card-header fw-bold">Keterbatasan Model</div>
+            <div class="card-body" id="limitations-container">
+                <div class="text-center py-4">
+                    <div class="spinner-border text-success" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <p class="text-muted mt-2">Memuat keterbatasan...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Sample Info Row -->
+<div class="row">
+    <div class="col-12 mb-3">
+        <div class="card">
+            <div class="card-header fw-bold">Informasi Dataset</div>
+            <div class="card-body" id="samples-container">
+                <div class="text-center py-3">
+                    <div class="spinner-border text-success" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <p class="text-muted mt-2">Memuat informasi dataset...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// ── Parse confusion matrix & render Plotly heatmap ──
+fetch('/api/model/confusion-matrix')
+    .then(function(r) { return r.json(); })
+    .then(function(cm) {
+        var TP = cm.TP, TN = cm.TN, FP = cm.FP, FN = cm.FN;
+
+        // Plotly heatmap — 2×2 actual vs predicted
+        var z = [[TP, FN], [FP, TN]];
+        var x = ['Positif', 'Negatif'];
+        var y = ['Positif', 'Negatif'];
+
+        var data = [{
+            z: z,
+            x: x,
+            y: y,
+            type: 'heatmap',
+            colorscale: [
+                [0, '#f8d7da'],
+                [0.5, '#fff3cd'],
+                [1, '#d4edda']
+            ],
+            showscale: false,
+            hovertemplate: '<b>%{y}</b> (aktual) vs <b>%{x}</b> (prediksi)<br>Nilai: %{z}<extra></extra>',
+            text: [[TP, FN], [FP, TN]],
+            texttemplate: '<b>%{text}</b>',
+            textfont: { size: 18, color: '#000' }
+        }];
+
+        var layout = {
+            xaxis: {
+                title: { text: 'Prediksi', standoff: 12 },
+                side: 'top'
+            },
+            yaxis: {
+                title: { text: 'Aktual', standoff: 12 }
+            },
+            margin: { l: 60, r: 20, t: 60, b: 40 },
+            paper_bgcolor: 'rgba(0,0,0,0)',
+            plot_bgcolor: 'rgba(0,0,0,0)',
+            annotations: [
+                { x: 'Positif', y: 'Positif', text: 'TP = ' + TP, showarrow: false, font: { size: 11 } },
+                { x: 'Negatif', y: 'Positif', text: 'FN = ' + FN, showarrow: false, font: { size: 11 } },
+                { x: 'Positif', y: 'Negatif', text: 'FP = ' + FP, showarrow: false, font: { size: 11 } },
+                { x: 'Negatif', y: 'Negatif', text: 'TN = ' + TN, showarrow: false, font: { size: 11 } }
+            ]
+        };
+
+        Plotly.newPlot('confusion-matrix-chart', data, layout, { responsive: true, displayModeBar: false });
+
+        // ── Interpretation ──
+        if (cm.interpretation) {
+            var interp = cm.interpretation;
+            var html = '<dl class="row mb-0 small">';
+            html += '<dt class="col-sm-2 text-success">TP</dt><dd class="col-sm-10">' + interp.TP + '</dd>';
+            html += '<dt class="col-sm-2 text-success">TN</dt><dd class="col-sm-10">' + interp.TN + '</dd>';
+            html += '<dt class="col-sm-2 text-warning">FP</dt><dd class="col-sm-10">' + interp.FP + '</dd>';
+            html += '<dt class="col-sm-2 text-danger">FN</dt><dd class="col-sm-10">' + interp.FN + '</dd>';
+            html += '</dl>';
+            document.getElementById('interpretation-container').innerHTML = html;
+        }
+    })
+    .catch(function(err) {
+        document.getElementById('confusion-matrix-chart').innerHTML =
+            '<div class="alert alert-danger mb-0">Gagal memuat confusion matrix: ' + err.message + '</div>';
+        document.getElementById('interpretation-container').innerHTML =
+            '<div class="alert alert-danger mb-0">Gagal memuat interpretasi.</div>';
+    });
+
+// ── Metrics ──────────────────────────────────────────
+fetch('/api/model/metrics')
+    .then(function(r) { return r.json(); })
+    .then(function(m) {
+        // Metric cards
+        var html = '<div class="row g-2">';
+        var metrics = [
+            { label: 'Accuracy', value: m.accuracy, color: '#198754', icon: '🎯' },
+            { label: 'Precision', value: m.precision, color: '#0d6efd', icon: '🎯' },
+            { label: 'Recall', value: m.recall, color: '#6f42c1', icon: '🔍' },
+            { label: 'F1-Score', value: m.f1_score, color: '#fd7e14', icon: '⚖️' }
+        ];
+        for (var i = 0; i < metrics.length; i++) {
+            var met = metrics[i];
+            html += '<div class="col-6">';
+            html += '<div class="card text-center border-0 bg-light" style="border-radius:10px;">';
+            html += '<div class="card-body py-3">';
+            html += '<div style="font-size:2rem;font-weight:700;color:' + met.color + ';">' + met.value + '%</div>';
+            html += '<small class="text-muted">' + met.label + '</small>';
+            html += '</div></div></div>';
+        }
+        html += '</div>';
+        document.getElementById('metrics-container').innerHTML = html;
+
+        // Sample info
+        var samplesHtml = '<div class="row text-center">';
+        samplesHtml += '<div class="col-6"><div class="p-3 bg-light rounded"><span class="fw-bold fs-4">' + m.training_samples + '</span><br><small class="text-muted">Training Samples</small></div></div>';
+        samplesHtml += '<div class="col-6"><div class="p-3 bg-light rounded"><span class="fw-bold fs-4">' + m.testing_samples + '</span><br><small class="text-muted">Testing Samples</small></div></div>';
+        samplesHtml += '</div>';
+        document.getElementById('samples-container').innerHTML = samplesHtml;
+    })
+    .catch(function(err) {
+        document.getElementById('metrics-container').innerHTML =
+            '<div class="alert alert-danger mb-0">Gagal memuat metrik: ' + err.message + '</div>';
+        document.getElementById('samples-container').innerHTML =
+            '<div class="alert alert-danger mb-0">Gagal memuat informasi dataset.</div>';
+    });
+
+// ── Limitations & Caveats ────────────────────────────────
+fetch('/api/model/confusion-matrix')
+    .then(function(r) { return r.json(); })
+    .then(function(cm) {
+        // Try fetching interpretation endpoint if available
+        return fetch('/api/model/confusion-matrix');
+    })
+    .then(function(r) { return r.json(); })
+    .then(function() {
+        // Static limitations displayed inline
+        var html = '<ul class="small mb-0 ps-3">';
+        html += '<li class="mb-1">Model trained on limited sample size (300 total pixels)</li>';
+        html += '<li class="mb-1">Single-temporal snapshot — no time-series trend analysis</li>';
+        html += '<li class="mb-1">Binary classification only (forest/non-forest)</li>';
+        html += '<li class="mb-1">Does not capture degradation, only complete loss</li>';
+        html += '<li class="mb-1">Results based on Landsat 8 OLI imagery (30m resolution)</li>';
+        html += '<li class="mb-1">Accuracy may vary at class boundaries and heterogeneous areas</li>';
+        html += '<li class="mb-1">Model should be re-validated annually with new reference data</li>';
+        html += '</ul>';
+        document.getElementById('limitations-container').innerHTML = html;
+    })
+    .catch(function(err) {
+        document.getElementById('limitations-container').innerHTML =
+            '<div class="alert alert-danger mb-0">Gagal memuat keterbatasan model.</div>';
+    });
+</script>
+{% endblock %}
