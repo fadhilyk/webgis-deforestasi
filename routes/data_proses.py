@@ -236,10 +236,10 @@ def get_metadata():
             "B11_B12":      "20 meter (resampled ke 10m)",
         },
         "classification": {
-            "algorithm":        "Random Forest Classifier",
-            "training_samples": 210,
-            "testing_samples":  90,
-            "split_ratio":      "70:30",
+            "algorithm":        "Random Forest (100 Trees)",
+            "training_samples": "Otomatis dari GEE (Dinamis)",
+            "testing_samples":  "Otomatis dari GEE (Dinamis)",
+            "split_ratio":      "70:30 (Seed: 42)",
         },
         "output_layers": {
             "gain":         "Area pertambahan tutupan hutan 2024→2025",

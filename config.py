@@ -80,12 +80,12 @@ MODEL_FILES = {
 # Informasi sumber data satelit yang digunakan
 DATA_METADATA = {
     "satellite":    "Sentinel-2 COPERNICUS/S2_SR_HARMONIZED",
-    "period_2024":  "01 Jan - 31 Des 2024",
-    "period_2025":  "01 Jan - 31 Des 2025",
-    "cloud_masking": "S2 Cloud Probability + SCL",
+    "period_2024":  "01 Juni - 30 September 2024",
+    "period_2025":  "01 Juni - 30 September 2025",
+    "cloud_masking": "QA60 Bitmask + Cloud < 20%",
     "composite":    "Median Composite",
-    "bands":        ["B2", "B3", "B4", "B8", "B11", "B12"],
-    "indexes":      ["NDVI", "NDMI", "NDBI"],
+    "bands":        ["B2", "B3", "B4", "B8", "B11", "B12", "NDVI"],
+    "indexes":      ["NDVI"],
     "crs":          "EPSG:4326",
 }
 
