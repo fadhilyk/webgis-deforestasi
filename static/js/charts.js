@@ -114,16 +114,20 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('model-content').style.display = 'block';
 
             // Update Metrics Cards
-            const updateMetricCard = (id, val, textId) => {
+            const updateMetricCard = (id, val, formulaText) => {
                 const percent = val.toFixed(1);
                 document.getElementById(`metric-${id}`).innerText = `${percent}%`;
-                document.getElementById(`bar-${id}`).style.width = `${percent}%`;
+                
+                const formulaEl = document.getElementById(`formula-${id}`);
+                if (formulaEl) {
+                    formulaEl.innerText = formulaText;
+                }
             };
 
-            updateMetricCard('accuracy', metrics.accuracy);
-            updateMetricCard('precision', metrics.precision);
-            updateMetricCard('recall', metrics.recall);
-            updateMetricCard('f1', metrics.f1_score);
+            updateMetricCard('accuracy', metrics.accuracy, metrics.formulas.accuracy);
+            updateMetricCard('precision', metrics.precision, metrics.formulas.precision);
+            updateMetricCard('recall', metrics.recall, metrics.formulas.recall);
+            updateMetricCard('f1', metrics.f1_score, metrics.formulas.f1_score);
             
             document.getElementById('model-samples').innerText = metrics.training_samples + metrics.testing_samples;
 
