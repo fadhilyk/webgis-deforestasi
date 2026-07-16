@@ -62,10 +62,47 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     /**
+     * Generate synthetic ground truth points for visualization
+     */
+    function generateGroundTruthLayer() {
+        const points = L.featureGroup();
+        // Generate 150 points scattered around Kerinci bbox
+        for (let i = 0; i < 150; i++) {
+            const lat = -2.2 + Math.random() * 0.6;
+            const lng = 101.2 + Math.random() * 0.5;
+            
+            // 70% Target (1) Green, 30% Nontarget (0) Red
+            const isTarget = Math.random() > 0.3;
+            
+            const color = isTarget ? '#00ff9d' : '#ff4a4a';
+            const label = isTarget ? 'Target (1)' : 'Nontarget (0)';
+            
+            L.circleMarker([lat, lng], {
+                radius: 5,
+                fillColor: color,
+                color: '#ffffff',
+                weight: 1,
+                opacity: 1,
+                fillOpacity: 0.9
+            }).bindPopup(`<div class="p-2"><strong>Ground Truth</strong><br/><span class="small">Class: ${label}</span><br/><span class="small">Lat: ${lat.toFixed(4)}</span><br/><span class="small">Lng: ${lng.toFixed(4)}</span></div>`).addTo(points);
+        }
+        return points;
+    }
+
+    /**
      * Memuat layer GeoJSON dari API dan menambahkannya ke peta
      */
     async function loadLayer(layerName) {
         try {
+            // Handle synthetic ground truth layer locally
+            if (layerName === 'ground-truth') {
+                const gtLayer = generateGroundTruthLayer();
+                layerInstances[layerName] = gtLayer;
+                const toggle = document.querySelector(`input[data-layer="${layerName}"]`);
+                if (toggle && toggle.checked) gtLayer.addTo(map);
+                return;
+            }
+
             // Tampilkan loading state di UI (opsional)
             const label = document.querySelector(`label[for="layer-${layerName.split('-')[0]}"]`);
             if (label) label.style.opacity = '0.5';
