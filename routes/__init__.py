@@ -1,8 +1,11 @@
-"""Route blueprints for WebGIS Monitoring Deforestasi Kerinci."""
+"""
+routes/__init__.py
+===================
+Package inisialisasi untuk routes layer.
 
-from routes.peta import peta_bp
-from routes.data_proses import data_bp
-from routes.model import model_bp
-from routes.insights import insights_bp
-
-__all__ = ['peta_bp', 'data_bp', 'model_bp', 'insights_bp']
+Setiap file route merepresentasikan satu tab di WebGIS dashboard:
+- peta.py        → Tab 1: Peta Hasil      (/map, /api/layers/<name>)
+- data_proses.py → Tab 2: Data & Proses   (/data, /api/data/...)
+- model.py       → Tab 3: Evaluasi Model  (/model, /api/model/...)
+- insights.py    → Tab 4: Insight Hasil   (/insights, /api/insights/...)
+"""
